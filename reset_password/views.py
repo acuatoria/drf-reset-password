@@ -17,6 +17,7 @@ class ResetPasswordView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = ResetPasswordToken.objects.all()
     serializer_class = ResetPasswordSerializer
     permission_classes = []
+    throttle_scope = 'reset_passwords'
 
     def create(self, request, *args, **kwargs):
         module, class_name = settings.AUTH_USER_MODEL.split(".")
